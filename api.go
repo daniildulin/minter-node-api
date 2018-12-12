@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/daniildulin/minter-node-api/responses"
 	"net/http"
+	"time"
 )
 
 type MinterNodeApi struct {
@@ -11,9 +12,9 @@ type MinterNodeApi struct {
 	link       string
 }
 
-func New(httpClient *http.Client, link string) *MinterNodeApi {
+func New(link string) *MinterNodeApi {
 	return &MinterNodeApi{
-		httpClient: httpClient,
+		httpClient: &http.Client{Timeout: 30 * time.Second},
 		link:       link,
 	}
 }
