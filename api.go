@@ -19,6 +19,10 @@ func New(link string) *MinterNodeApi {
 	}
 }
 
+func (api *MinterNodeApi) SetLink(link string) {
+	api.link = link
+}
+
 func (api *MinterNodeApi) GetStatus() (*responses.StatusResponse, error) {
 	response := responses.StatusResponse{}
 	link := api.link + `/status`
