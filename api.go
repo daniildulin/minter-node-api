@@ -28,11 +28,9 @@ func (api *MinterNodeApi) GetStatus() (*responses.StatusResponse, error) {
 	response := responses.StatusResponse{}
 	link := api.link + `/status`
 	err := api.getJson(link, &response)
-
 	if err != nil {
 		return nil, err
 	}
-
 	return &response, err
 }
 
@@ -40,11 +38,19 @@ func (api *MinterNodeApi) GetBlock(height uint64) (*responses.BlockResponse, err
 	response := responses.BlockResponse{}
 	link := api.link + `/block?height=` + fmt.Sprint(height)
 	err := api.getJson(link, &response)
-
 	if err != nil {
 		return nil, err
 	}
+	return &response, err
+}
 
+func (api *MinterNodeApi) GetBlockValidators(height uint64) (*responses.ValidatorsResponse, error) {
+	response := responses.ValidatorsResponse{}
+	link := api.link + `/validators?height=` + fmt.Sprint(height)
+	err := api.getJson(link, &response)
+	if err != nil {
+		return nil, err
+	}
 	return &response, err
 }
 
