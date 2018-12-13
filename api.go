@@ -44,6 +44,16 @@ func (api *MinterNodeApi) GetBlock(height uint64) (*responses.BlockResponse, err
 	return &response, err
 }
 
+func (api *MinterNodeApi) GetCandidate(pubKey string) (*responses.CandidateResponse, error) {
+	response := responses.CandidateResponse{}
+	link := api.link + `/candidate?pubkey=` + pubKey
+	err := api.getJson(link, &response)
+	if err != nil {
+		return nil, err
+	}
+	return &response, err
+}
+
 func (api *MinterNodeApi) GetBlockValidators(height uint64) (*responses.ValidatorsResponse, error) {
 	response := responses.ValidatorsResponse{}
 	link := api.link + `/validators?height=` + fmt.Sprint(height)
