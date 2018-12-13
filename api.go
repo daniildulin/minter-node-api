@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/daniildulin/minter-node-api/responses"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -67,6 +68,16 @@ func (api *MinterNodeApi) GetCoinInfo(symbol string) (*responses.CoinInfoRespons
 func (api *MinterNodeApi) GetBlockValidators(height uint64) (*responses.ValidatorsResponse, error) {
 	response := responses.ValidatorsResponse{}
 	link := api.link + `/validators?height=` + fmt.Sprint(height)
+	err := api.getJson(link, &response)
+	if err != nil {
+		return nil, err
+	}
+	return &response, err
+}
+
+func (api *MinterNodeApi) GetAddress(address string) (*responses.AddressResponse, error) {
+	response := responses.AddressResponse{}
+	link := api.link + `/address?address=` + strings.Title(address)
 	err := api.getJson(link, &response)
 	if err != nil {
 		return nil, err
