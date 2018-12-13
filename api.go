@@ -45,6 +45,26 @@ func (api *MinterNodeApi) GetBlock(height uint64) (*responses.BlockResponse, err
 	return &response, err
 }
 
+func (api *MinterNodeApi) GetBlockEvents(height uint64) (*responses.EventsResponse, error) {
+	response := responses.EventsResponse{}
+	link := api.link + `/events?height=` + fmt.Sprint(height)
+	err := api.getJson(link, &response)
+	if err != nil {
+		return nil, err
+	}
+	return &response, err
+}
+
+func (api *MinterNodeApi) GetBlockValidators(height uint64) (*responses.ValidatorsResponse, error) {
+	response := responses.ValidatorsResponse{}
+	link := api.link + `/validators?height=` + fmt.Sprint(height)
+	err := api.getJson(link, &response)
+	if err != nil {
+		return nil, err
+	}
+	return &response, err
+}
+
 func (api *MinterNodeApi) GetCandidate(pubKey string) (*responses.CandidateResponse, error) {
 	response := responses.CandidateResponse{}
 	link := api.link + `/candidate?pubkey=` + pubKey
@@ -58,16 +78,6 @@ func (api *MinterNodeApi) GetCandidate(pubKey string) (*responses.CandidateRespo
 func (api *MinterNodeApi) GetCoinInfo(symbol string) (*responses.CoinInfoResponse, error) {
 	response := responses.CoinInfoResponse{}
 	link := api.link + `/coin_info?symbol=` + symbol
-	err := api.getJson(link, &response)
-	if err != nil {
-		return nil, err
-	}
-	return &response, err
-}
-
-func (api *MinterNodeApi) GetBlockValidators(height uint64) (*responses.ValidatorsResponse, error) {
-	response := responses.ValidatorsResponse{}
-	link := api.link + `/validators?height=` + fmt.Sprint(height)
 	err := api.getJson(link, &response)
 	if err != nil {
 		return nil, err
