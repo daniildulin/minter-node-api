@@ -2,6 +2,7 @@ package minter_node_api
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/daniildulin/minter-node-api/responses"
 	"net/http"
 	"time"
@@ -14,8 +15,8 @@ type MinterNodeApi struct {
 
 func New(link string) *MinterNodeApi {
 	return &MinterNodeApi{
-		httpClient: &http.Client{Timeout: 30 * time.Second},
 		link:       link,
+		httpClient: &http.Client{Timeout: 30 * time.Second},
 	}
 }
 
@@ -26,6 +27,18 @@ func (api *MinterNodeApi) SetLink(link string) {
 func (api *MinterNodeApi) GetStatus() (*responses.StatusResponse, error) {
 	response := responses.StatusResponse{}
 	link := api.link + `/status`
+	err := api.getJson(link, &response)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &response, err
+}
+
+func (api *MinterNodeApi) GetBlock(height uint64) (*responses.BlockResponse, error) {
+	response := responses.BlockResponse{}
+	link := api.link + `/block?height=` + fmt.Sprint(height)
 	err := api.getJson(link, &response)
 
 	if err != nil {
