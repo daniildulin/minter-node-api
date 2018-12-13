@@ -54,9 +54,9 @@ func (api *MinterNodeApi) GetCandidate(pubKey string) (*responses.CandidateRespo
 	return &response, err
 }
 
-func (api *MinterNodeApi) GetCoinInfo(symol string) (*responses.CoinInfoResponse, error) {
+func (api *MinterNodeApi) GetCoinInfo(symbol string) (*responses.CoinInfoResponse, error) {
 	response := responses.CoinInfoResponse{}
-	link := api.link + `/coin_info?symbol=` + coin
+	link := api.link + `/coin_info?symbol=` + symbol
 	err := api.getJson(link, &response)
 	if err != nil {
 		return nil, err
