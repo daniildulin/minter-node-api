@@ -44,3 +44,15 @@ type transactionData struct {
 	FromCoinSymbol       *string `json:"from_coin_symbol"`
 	Threshold            *string `json:"threshold"`
 }
+
+type SendTransactionResponse struct {
+	Response
+	Result *SendTransactionResult `json:"result"`
+}
+
+type SendTransactionResult struct {
+	Code int32  `json:"code"`
+	Data string `json:"data"`
+	Log  string `json:"log"`
+	Hash string `json:"hash"`
+}

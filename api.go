@@ -99,6 +99,16 @@ func (api *MinterNodeApi) GetAddress(address string) (*responses.AddressResponse
 	return &response, err
 }
 
+func (api *MinterNodeApi) PushTransaction(tx string) (*responses.SendTransactionResponse, error) {
+	response := responses.SendTransactionResponse{}
+	link := api.link + `/send_transaction?tx=0x` + tx
+	err := api.getJson(link, &response)
+	if err != nil {
+		return nil, err
+	}
+	return &response, err
+}
+
 func (api *MinterNodeApi) getJson(url string, target interface{}) error {
 	r, err := api.httpClient.Get(url)
 	if err != nil {
