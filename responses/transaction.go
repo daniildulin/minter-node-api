@@ -38,7 +38,7 @@ type transactionData struct {
 	PubKey               *string `json:"pub_key"`
 	Commission           *string `json:"commission"`
 	Stake                *string `json:"stake"`
-	Proof                *[]byte `json:"proof"`
+	Proof                *string `json:"proof"`
 	RawCheck             *[]byte `json:"raw_check"`
 	ToCoinSymbol         *string `json:"to_coin_symbol"`
 	FromCoinSymbol       *string `json:"from_coin_symbol"`
