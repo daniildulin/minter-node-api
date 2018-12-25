@@ -22,27 +22,34 @@ type Transaction struct {
 }
 
 type transactionData struct {
-	Coin                 *string `json:"coin"`
-	To                   *string `json:"to"`
-	Value                *string `json:"value"`
-	CoinToSell           *string `json:"coin_to_sell"`
-	CoinToBuy            *string `json:"coin_to_buy"`
-	ValueToSell          *string `json:"value_to_sell"`
-	ValueToBuy           *string `json:"value_to_buy"`
-	Name                 *string `json:"name"`
-	Symbol               *string `json:"symbol"`
-	InitialAmount        *string `json:"initial_amount"`
-	InitialReserve       *string `json:"initial_reserve"`
-	ConstantReserveRatio *string `json:"constant_reserve_ratio"`
-	Address              *string `json:"address"`
-	PubKey               *string `json:"pub_key"`
-	Commission           *string `json:"commission"`
-	Stake                *string `json:"stake"`
-	Proof                *string `json:"proof"`
-	RawCheck             *[]byte `json:"raw_check"`
-	ToCoinSymbol         *string `json:"to_coin_symbol"`
-	FromCoinSymbol       *string `json:"from_coin_symbol"`
-	Threshold            *string `json:"threshold"`
+	Coin                 *string              `json:"coin"`
+	To                   *string              `json:"to"`
+	Value                *string              `json:"value"`
+	CoinToSell           *string              `json:"coin_to_sell"`
+	CoinToBuy            *string              `json:"coin_to_buy"`
+	ValueToSell          *string              `json:"value_to_sell"`
+	ValueToBuy           *string              `json:"value_to_buy"`
+	Name                 *string              `json:"name"`
+	Symbol               *string              `json:"symbol"`
+	InitialAmount        *string              `json:"initial_amount"`
+	InitialReserve       *string              `json:"initial_reserve"`
+	ConstantReserveRatio *string              `json:"constant_reserve_ratio"`
+	Address              *string              `json:"address"`
+	PubKey               *string              `json:"pub_key"`
+	Commission           *string              `json:"commission"`
+	Stake                *string              `json:"stake"`
+	Proof                *string              `json:"proof"`
+	RawCheck             *[]byte              `json:"raw_check"`
+	ToCoinSymbol         *string              `json:"to_coin_symbol"`
+	FromCoinSymbol       *string              `json:"from_coin_symbol"`
+	Threshold            *string              `json:"threshold"`
+	ReceiversList        *[]multiSendReceiver `json:"list"`
+}
+
+type multiSendReceiver struct {
+	Coin  string `json:"coin"`
+	To    string `json:"to"`
+	Value string `json:"value"`
 }
 
 type SendTransactionResponse struct {
