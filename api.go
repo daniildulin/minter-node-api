@@ -109,9 +109,9 @@ func (api *MinterNodeApi) GetEstimateTx(tx string) (*responses.EstimateTxRespons
 	return &response, err
 }
 
-func (api *MinterNodeApi) GetEstimateCoinBuy(coinToSell string, coinToBuy string, value float64) (*responses.EstimateCoinBuyResponse, error) {
+func (api *MinterNodeApi) GetEstimateCoinBuy(coinToSell string, coinToBuy string, value string) (*responses.EstimateCoinBuyResponse, error) {
 	response := responses.EstimateCoinBuyResponse{}
-	link := api.link + `/estimate_coin_buy?coin_to_sell=` + coinToSell + `&coin_to_buy=` + coinToBuy + `&value_to_buy=` + fmt.Sprintf("%f", value)
+	link := api.link + `/estimate_coin_buy?coin_to_sell=` + coinToSell + `&coin_to_buy=` + coinToBuy + `&value_to_buy=` + value
 	err := api.getJson(link, &response)
 	if err != nil {
 		return nil, err
@@ -119,9 +119,9 @@ func (api *MinterNodeApi) GetEstimateCoinBuy(coinToSell string, coinToBuy string
 	return &response, err
 }
 
-func (api *MinterNodeApi) GetEstimateCoinSell(coinToSell string, coinToBuy string, value float64) (*responses.EstimateCoinSellResponse, error) {
+func (api *MinterNodeApi) GetEstimateCoinSell(coinToSell string, coinToBuy string, value string) (*responses.EstimateCoinSellResponse, error) {
 	response := responses.EstimateCoinSellResponse{}
-	link := api.link + `/estimate_coin_sell?coin_to_sell=` + coinToSell + `&coin_to_buy=` + coinToBuy + `&value_to_sell=` + fmt.Sprintf("%f", value)
+	link := api.link + `/estimate_coin_sell?coin_to_sell=` + coinToSell + `&coin_to_buy=` + coinToBuy + `&value_to_sell=` + value
 	err := api.getJson(link, &response)
 	if err != nil {
 		return nil, err
