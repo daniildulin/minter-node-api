@@ -99,6 +99,16 @@ func (api *MinterNodeApi) GetAddress(address string) (*responses.AddressResponse
 	return &response, err
 }
 
+func (api *MinterNodeApi) GetEstimateTx(tx string) (*responses.EstimateTxResponse, error) {
+	response := responses.EstimateTxResponse{}
+	link := api.link + `/estimate_tx_commission?tx=` + tx
+	err := api.getJson(link, &response)
+	if err != nil {
+		return nil, err
+	}
+	return &response, err
+}
+
 func (api *MinterNodeApi) PushTransaction(tx string) (*responses.SendTransactionResponse, error) {
 	response := responses.SendTransactionResponse{}
 	link := api.link + `/send_transaction?tx=0x` + tx
