@@ -109,6 +109,26 @@ func (api *MinterNodeApi) GetEstimateTx(tx string) (*responses.EstimateTxRespons
 	return &response, err
 }
 
+func (api *MinterNodeApi) GetEstimateCoinBuy(coinToSell string, coinToBuy string, value float64) (*responses.EstimateCoinBuyResponse, error) {
+	response := responses.EstimateCoinBuyResponse{}
+	link := api.link + `/estimate_coin_buy?coin_to_sell=` + coinToSell + `&coin_to_buy=` + coinToBuy + `&value_to_buy=` + fmt.Sprintf("%f", value)
+	err := api.getJson(link, &response)
+	if err != nil {
+		return nil, err
+	}
+	return &response, err
+}
+
+func (api *MinterNodeApi) GetEstimateCoinSell(coinToSell string, coinToBuy string, value float64) (*responses.EstimateCoinSellResponse, error) {
+	response := responses.EstimateCoinSellResponse{}
+	link := api.link + `/estimate_coin_sell?coin_to_sell=` + coinToSell + `&coin_to_buy=` + coinToBuy + `&value_to_sell=` + fmt.Sprintf("%f", value)
+	err := api.getJson(link, &response)
+	if err != nil {
+		return nil, err
+	}
+	return &response, err
+}
+
 func (api *MinterNodeApi) PushTransaction(tx string) (*responses.SendTransactionResponse, error) {
 	response := responses.SendTransactionResponse{}
 	link := api.link + `/send_transaction?tx=0x` + tx
