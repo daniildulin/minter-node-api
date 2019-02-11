@@ -17,7 +17,7 @@ type Transaction struct {
 	Payload     string             `json:"payload"`
 	ServiceData string             `json:"service_data"`
 	Log         *string            `json:"log"`
-	Data        transactionData    `json:"data"`
+	Data        *map[string]string `json:"data"`
 	Tags        *map[string]string `json:"tags"`
 }
 
