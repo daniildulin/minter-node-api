@@ -43,6 +43,8 @@ type transactionData struct {
 	ToCoinSymbol         *string              `json:"to_coin_symbol"`
 	FromCoinSymbol       *string              `json:"from_coin_symbol"`
 	Threshold            *string              `json:"threshold"`
+	RewardAddress        *string              `json:"reward_address"`
+	OwnerAddress         *string              `json:"owner_address"`
 	ReceiversList        *[]multiSendReceiver `json:"list"`
 }
 

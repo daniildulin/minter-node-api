@@ -3,7 +3,6 @@ package minter_node_api
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/daniildulin/minter-node-api/errors"
 	"github.com/daniildulin/minter-node-api/responses"
 	"net/http"
 	"strings"
@@ -47,9 +46,6 @@ func (api *MinterNodeApi) GetBlock(height uint64) (*responses.BlockResponse, err
 	if err != nil {
 		return nil, err
 	}
-	if response.Error != nil {
-		return nil, errors.NewNodeError(response.Error.Data, response.Error.Code)
-	}
 	return &response, err
 }
 
@@ -59,9 +55,6 @@ func (api *MinterNodeApi) GetBlockEvents(height uint64) (*responses.EventsRespon
 	err := api.getJson(link, &response)
 	if err != nil {
 		return nil, err
-	}
-	if response.Error != nil {
-		return nil, errors.NewNodeError(response.Error.Data, response.Error.Code)
 	}
 	return &response, err
 }
@@ -73,9 +66,6 @@ func (api *MinterNodeApi) GetBlockValidators(height uint64) (*responses.Validato
 	if err != nil {
 		return nil, err
 	}
-	if response.Error != nil {
-		return nil, errors.NewNodeError(response.Error.Data, response.Error.Code)
-	}
 	return &response, err
 }
 
@@ -85,9 +75,6 @@ func (api *MinterNodeApi) GetCandidate(pubKey string) (*responses.CandidateRespo
 	err := api.getJson(link, &response)
 	if err != nil {
 		return nil, err
-	}
-	if response.Error != nil {
-		return nil, errors.NewNodeError(response.Error.Data, response.Error.Code)
 	}
 	return &response, err
 }
@@ -99,9 +86,6 @@ func (api *MinterNodeApi) GetCoinInfo(symbol string) (*responses.CoinInfoRespons
 	if err != nil {
 		return nil, err
 	}
-	if response.Error != nil {
-		return nil, errors.NewNodeError(response.Error.Data, response.Error.Code)
-	}
 	return &response, err
 }
 
@@ -111,9 +95,6 @@ func (api *MinterNodeApi) GetAddress(address string) (*responses.AddressResponse
 	err := api.getJson(link, &response)
 	if err != nil {
 		return nil, err
-	}
-	if response.Error != nil {
-		return nil, errors.NewNodeError(response.Error.Data, response.Error.Code)
 	}
 	return &response, err
 }
@@ -125,9 +106,6 @@ func (api *MinterNodeApi) GetEstimateTx(tx string) (*responses.EstimateTxRespons
 	if err != nil {
 		return nil, err
 	}
-	if response.Error != nil {
-		return nil, errors.NewNodeError(response.Error.Data, response.Error.Code)
-	}
 	return &response, err
 }
 
@@ -137,9 +115,6 @@ func (api *MinterNodeApi) GetEstimateCoinBuy(coinToSell string, coinToBuy string
 	err := api.getJson(link, &response)
 	if err != nil {
 		return nil, err
-	}
-	if response.Error != nil {
-		return nil, errors.NewNodeError(response.Error.Data, response.Error.Code)
 	}
 	return &response, err
 }
@@ -151,8 +126,15 @@ func (api *MinterNodeApi) GetEstimateCoinSell(coinToSell string, coinToBuy strin
 	if err != nil {
 		return nil, err
 	}
-	if response.Error != nil {
-		return nil, errors.NewNodeError(response.Error.Data, response.Error.Code)
+	return &response, err
+}
+
+func (api *MinterNodeApi) GetMinGasPrice() (*responses.GasResponse, error) {
+	response := responses.GasResponse{}
+	link := api.link + `/min_gas_price`
+	err := api.getJson(link, &response)
+	if err != nil {
+		return nil, err
 	}
 	return &response, err
 }
@@ -163,9 +145,6 @@ func (api *MinterNodeApi) PushTransaction(tx string) (*responses.SendTransaction
 	err := api.getJson(link, &response)
 	if err != nil {
 		return nil, err
-	}
-	if response.Error != nil {
-		return nil, errors.NewNodeError(response.Error.Data, response.Error.Code)
 	}
 	return &response, err
 }

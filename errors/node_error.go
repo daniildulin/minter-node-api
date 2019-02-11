@@ -1,6 +1,5 @@
 package errors
 
-// New returns an error that formats as the given text.
 func NewNodeError(text string, code int32) error {
 	return &NodeError{text, code}
 }

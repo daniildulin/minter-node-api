@@ -22,3 +22,8 @@ type EstimateCoinSellResponse struct {
 		WillGet    string `json:"will_get"`
 	} `json:"result"`
 }
+
+type GasResponse struct {
+	Response
+	Result string `json:"result"`
+}
