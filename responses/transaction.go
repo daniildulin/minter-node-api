@@ -6,19 +6,19 @@ type TransactionResponse struct {
 }
 
 type Transaction struct {
-	Hash        string             `json:"hash"`
-	From        string             `json:"from"`
-	Type        uint8              `json:"type"`
-	Nonce       string             `json:"nonce"`
-	GasPrice    string             `json:"gas_price"`
-	GasCoin     string             `json:"gas_coin"`
-	GasUsed     string             `json:"gas_used"`
-	Gas         string             `json:"gas"`
-	Payload     string             `json:"payload"`
-	ServiceData string             `json:"service_data"`
-	Log         *string            `json:"log"`
-	Data        *map[string]string `json:"data"`
-	Tags        *map[string]string `json:"tags"`
+	Hash        string                  `json:"hash"`
+	From        string                  `json:"from"`
+	Type        uint8                   `json:"type"`
+	Nonce       string                  `json:"nonce"`
+	GasPrice    string                  `json:"gas_price"`
+	GasCoin     string                  `json:"gas_coin"`
+	GasUsed     string                  `json:"gas_used"`
+	Gas         string                  `json:"gas"`
+	Payload     string                  `json:"payload"`
+	ServiceData string                  `json:"service_data"`
+	Log         *string                 `json:"log"`
+	Data        *map[string]interface{} `json:"data"`
+	Tags        *map[string]string      `json:"tags"`
 }
 
 type transactionData struct {
