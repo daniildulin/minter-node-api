@@ -21,7 +21,7 @@ type Transaction struct {
 	Tags        *map[string]string      `json:"tags"`
 }
 
-type transactionData struct {
+type TransactionData struct {
 	Coin                 *string              `json:"coin"`
 	To                   *string              `json:"to"`
 	Value                *string              `json:"value"`
@@ -45,10 +45,10 @@ type transactionData struct {
 	Threshold            *string              `json:"threshold"`
 	RewardAddress        *string              `json:"reward_address"`
 	OwnerAddress         *string              `json:"owner_address"`
-	ReceiversList        *[]multiSendReceiver `json:"list"`
+	ReceiversList        *[]MultiSendReceiver `json:"list"`
 }
 
-type multiSendReceiver struct {
+type MultiSendReceiver struct {
 	Coin  string `json:"coin"`
 	To    string `json:"to"`
 	Value string `json:"value"`
