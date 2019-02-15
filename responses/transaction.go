@@ -16,6 +16,7 @@ type Transaction struct {
 	Gas         string                  `json:"gas"`
 	Payload     string                  `json:"payload"`
 	ServiceData string                  `json:"service_data"`
+	RawTx       string                  `json:"raw_tx"`
 	Log         *string                 `json:"log"`
 	Data        *map[string]interface{} `json:"data"`
 	Tags        *map[string]string      `json:"tags"`
