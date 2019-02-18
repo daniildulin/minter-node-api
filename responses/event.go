@@ -3,7 +3,7 @@ package responses
 type EventsResponse struct {
 	Response
 	Result struct {
-		Events *[]event `json:"events"`
+		Events []event `json:"events"`
 	} `json:"result"`
 }
 
