@@ -102,7 +102,7 @@ func (api *MinterNodeApi) GetAddress(address string) (*responses.AddressResponse
 func (api *MinterNodeApi) GetAddresses(addresses []string) (*responses.BalancesResponse, error) {
 	response := responses.BalancesResponse{}
 	queryStr := "[" + strings.Join(addresses, ",") + "]"
-	link := api.link + `/address?address=` + queryStr
+	link := api.link + `/address?addresses=` + queryStr
 	err := api.getJson(link, &response)
 	if err != nil {
 		return nil, err
