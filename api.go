@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/daniildulin/minter-node-api/responses"
 	"net/http"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -99,10 +100,10 @@ func (api *MinterNodeApi) GetAddress(address string) (*responses.AddressResponse
 	return &response, err
 }
 
-func (api *MinterNodeApi) GetAddresses(addresses []string) (*responses.BalancesResponse, error) {
+func (api *MinterNodeApi) GetAddresses(addresses []string, height uint64) (*responses.BalancesResponse, error) {
 	response := responses.BalancesResponse{}
 	queryStr := "[" + strings.Join(addresses, ",") + "]"
-	link := api.link + `/addresses?addresses=` + queryStr
+	link := api.link + `/addresses?addresses=` + queryStr + `&height=` + strconv.Itoa(int(height))
 	err := api.getJson(link, &response)
 	if err != nil {
 		return nil, err
