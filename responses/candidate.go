@@ -3,6 +3,8 @@ package responses
 type CandidateResponse struct {
 	Response
 	Result struct {
+		OwnerAddress     string  `json:"owner_address"`
+		RewardAddress    string  `json:"reward_address"`
 		CandidateAddress string  `json:"candidate_address"`
 		TotalStake       string  `json:"total_stake"`
 		PubKey           string  `json:"pubkey"`
