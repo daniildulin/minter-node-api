@@ -70,9 +70,9 @@ func (api *MinterNodeApi) GetBlockValidators(height uint64) (*responses.Validato
 	return &response, err
 }
 
-func (api *MinterNodeApi) GetCandidate(pubKey string) (*responses.CandidateResponse, error) {
+func (api *MinterNodeApi) GetCandidate(pubKey string, height uint64) (*responses.CandidateResponse, error) {
 	response := responses.CandidateResponse{}
-	link := api.link + `/candidate?pubkey=` + pubKey
+	link := api.link + `/candidate?pubkey=` + pubKey + `&height=` + strconv.Itoa(int(height))
 	err := api.getJson(link, &response)
 	if err != nil {
 		return nil, err
