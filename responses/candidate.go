@@ -8,7 +8,7 @@ type CandidateResponse struct {
 		PubKey           string  `json:"pubkey"`
 		Commission       string  `json:"commission"`
 		CreatedAtBlock   string  `json:"created_at_block"`
-		Status           byte    `json:"status"`
+		Status           uint8   `json:"status"`
 		Stakes           []Stake `json:"stakes"`
 	} `json:"result"`
 }
@@ -22,7 +22,7 @@ type BlockCandidatesResponse struct {
 		PubKey         string `json:"pubkey"`
 		Commission     string `json:"commission"`
 		CreatedAtBlock string `json:"created_at_block"`
-		Status         byte   `json:"status"`
+		Status         uint8  `json:"status"`
 	} `json:"result"`
 }
 
