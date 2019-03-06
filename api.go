@@ -4,21 +4,18 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/daniildulin/minter-node-api/responses"
-	"net/http"
+	"github.com/valyala/fasthttp"
 	"strconv"
 	"strings"
-	"time"
 )
 
 type MinterNodeApi struct {
-	httpClient *http.Client
-	link       string
+	link string
 }
 
 func New(link string) *MinterNodeApi {
 	return &MinterNodeApi{
-		link:       link,
-		httpClient: &http.Client{Timeout: 30 * time.Second},
+		link: link,
 	}
 }
 
@@ -162,10 +159,9 @@ func (api *MinterNodeApi) PushTransaction(tx string) (*responses.SendTransaction
 }
 
 func (api *MinterNodeApi) getJson(url string, target interface{}) error {
-	r, err := api.httpClient.Get(url)
+	_, body, err := fasthttp.Get(nil, url)
 	if err != nil {
 		return err
 	}
-	defer r.Body.Close()
-	return json.NewDecoder(r.Body).Decode(target)
+	return json.Unmarshal(body, target)
 }
