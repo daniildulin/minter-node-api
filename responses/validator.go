@@ -6,7 +6,7 @@ type ValidatorsResponse struct {
 }
 
 type Validator struct {
-	PubKey      string  `json:"pubkey"`
-	Signed      *bool   `json:"signed"`
-	VotingPower *string `json:"voting_power"`
+	PubKey      string `json:"pubkey"`
+	Signed      bool   `json:"signed"`
+	VotingPower string `json:"voting_power"`
 }
