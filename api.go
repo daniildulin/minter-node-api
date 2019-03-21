@@ -77,6 +77,16 @@ func (api *MinterNodeApi) GetCandidate(pubKey string, height uint64) (*responses
 	return &response, err
 }
 
+func (api *MinterNodeApi) GetCandidates(height uint64) (*responses.BlockCandidatesResponse, error) {
+	response := responses.BlockCandidatesResponse{}
+	link := api.link + `/candidates?height=` + strconv.Itoa(int(height))
+	err := api.getJson(link, &response)
+	if err != nil {
+		return nil, err
+	}
+	return &response, err
+}
+
 func (api *MinterNodeApi) GetCoinInfo(symbol string) (*responses.CoinInfoResponse, error) {
 	response := responses.CoinInfoResponse{}
 	link := api.link + `/coin_info?symbol=` + symbol
