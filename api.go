@@ -77,9 +77,14 @@ func (api *MinterNodeApi) GetCandidate(pubKey string, height uint64) (*responses
 	return &response, err
 }
 
-func (api *MinterNodeApi) GetCandidates(height uint64) (*responses.BlockCandidatesResponse, error) {
+func (api *MinterNodeApi) GetCandidates(height uint64, stakes bool) (*responses.BlockCandidatesResponse, error) {
 	response := responses.BlockCandidatesResponse{}
 	link := api.link + `/candidates?height=` + strconv.Itoa(int(height))
+
+	if stakes {
+		link += `&include_stakes=true`
+	}
+
 	err := api.getJson(link, &response)
 	if err != nil {
 		return nil, err
