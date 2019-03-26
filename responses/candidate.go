@@ -7,7 +7,7 @@ type CandidateResponse struct {
 		RewardAddress    string  `json:"reward_address"`
 		CandidateAddress string  `json:"candidate_address"`
 		TotalStake       string  `json:"total_stake"`
-		PubKey           string  `json:"pubkey"`
+		PubKey           string  `json:"pub_key"`
 		Commission       string  `json:"commission"`
 		CreatedAtBlock   string  `json:"created_at_block"`
 		Status           uint8   `json:"status"`
@@ -21,7 +21,7 @@ type BlockCandidatesResponse struct {
 		RewardAddress  string  `json:"reward_address"`
 		OwnerAddress   string  `json:"owner_address"`
 		TotalStake     string  `json:"total_stake"`
-		PubKey         string  `json:"pubkey"`
+		PubKey         string  `json:"pub_key"`
 		Commission     string  `json:"commission"`
 		CreatedAtBlock string  `json:"created_at_block"`
 		Status         uint8   `json:"status"`
